@@ -41,7 +41,7 @@ int main(){
 
     activationFunctions[cantLayers-1] = 2;
 
-    NeuralNetwork net = createNeuralNetwork(cantLayers, netSizes, activationFunctions, -0.1, 0.1, -0.1, 0.1);
+    NeuralNetwork net = createNeuralNetwork(cantLayers, netSizes, activationFunctions, -0.5, 0.5, -0.1, 0.1);
 
     loadNetwork(net, "datas/networkdata1.bin");
 

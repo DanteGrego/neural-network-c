@@ -58,7 +58,7 @@ void backPropagate(NeuralNetwork net, double* desiredOutput){
         backPropValues[l][n] = errorFunctionDerivative(desiredOutput[n], net->activatedValues[l][n]);
         backPropValues[l][n] *= activationFunctions[net->activationFunctions[l]].derivative(net->deactivatedValues[l][n]);
         
-        net->biasChanges[l][n] = backPropValues[l][n];
+        net->biasChanges[l][n] += backPropValues[l][n];
         for(int w = 0; w < net->layerSizes[l-1]; w++){
             net->weightChanges[l][n][w] += net->activatedValues[l-1][w] * backPropValues[l][n];
         }
@@ -72,7 +72,7 @@ void backPropagate(NeuralNetwork net, double* desiredOutput){
             }
             backPropValues[l][n] *= activationFunctions[net->activationFunctions[l]].derivative(net->deactivatedValues[l][n]);
             
-            net->biasChanges[l][n] = backPropValues[l][n];
+            net->biasChanges[l][n] += backPropValues[l][n];
             for(int w = 0; w < net->layerSizes[l-1]; w++){
                 net->weightChanges[l][n][w] += net->activatedValues[l-1][w] * backPropValues[l][n];
             }
